@@ -1,4 +1,6 @@
-node_modules/
+gitnode_modules/
 *.env
 *.txt
 *.docx
+.cache
+node_modules
