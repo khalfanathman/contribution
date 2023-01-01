@@ -1,0 +1,35 @@
+extends base
+
+block content 
+    .card
+        .card.shadow.mb-4
+            .card-header.py-3
+                h6.m-0.font-weight-bold.text-primary LIST OF MY BENEFICIARIES 
+            .card-body
+                .table-responsive
+                    #dataTable_wrapper.dataTables_wrapper.dt-bootsrtap4
+                    table.table.projects.table-bordered.dataTable#dataTable(width="100%", cellspacing="0", role="grid", aria-describedby="dataTable_info", style="width: 100%;")
+                        thead
+                            tr
+                              th No.
+                              th First Name
+                              th Last Name 
+                              th Relation 
+                              th Age
+                              th Status
+                              th 
+                        tbody
+                         each ben, i in benef
+                            tr
+                              td #{i+1}
+                              td #{ben.first_name}
+                              td #{ben.email}
+                              td #{ben.ID_n}
+                              td #{ben.birthCertNo}
+                              td 
+                              td.project-actions.text-right
+                                a.btn.btn-primary.btn-sm(href=`/dependant/${ben.id}`)
+                                    i.fas.fa-folder.
+                                    |
+                                    | View 
+                                    | 

@@ -1,0 +1,29 @@
+extends base
+
+
+block content
+        .card.card-warning
+            .card-header
+                h3.card-title Contribute for #{tittle}
+                    //  /.card-header 
+            .card-body
+                form.contribform
+                        .row   
+                             .col-sm-12
+                                //  text input 
+                                .form-group
+                                    label Amount
+                                    input.form-control#amount(type="text",name='amount', placeholder="enter value Above 1000ksh")
+                             .col-sm-12
+                                //  text input 
+                                .form-group
+                                    label Phone Number
+                                    input.form-control#phone(type="text",name='phone' placeholder="Enter Phone Start with 254 eg 254708374149")
+                             .col-sm-12
+                                //  textarea 
+                                .form-group
+                                    label Condolence SMS
+                                    textarea.form-control#sms(rows="2", name ='sms',placeholder="Enter Text(optional)")
+                                .form-group.row
+                                    .offset-sm-2.col-sm-10
+                                    button.btn.btn-danger.cntribtbtn(data-contrib-id=`${contrib.id}`) Contribute

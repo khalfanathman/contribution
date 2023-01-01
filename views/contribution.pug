@@ -1,0 +1,107 @@
+extends base
+
+block content
+    //  Content Header (Page header) 
+    section.content-header
+        .container-fluid
+            .row.mb-2
+                .col-sm-6
+                    h1 Contribution Detail
+                .col-sm-6
+                    ol.breadcrumb.float-sm-right
+                        li.breadcrumb-item
+                            a(href="#") Home
+                        li.breadcrumb-item.active Contribution Detail
+        //  /.container-fluid 
+        //  Main content 
+        section.content
+            //  Default box 
+            .card
+                .card-header
+                    h3.card-title Contributions Detail
+                    .card-tools
+                        button.btn.btn-tool(type="button", data-card-widget="collapse", title="Collapse")
+                            i.fas.fa-minus
+                        button.btn.btn-tool(type="button", data-card-widget="remove", title="Remove")
+                            i.fas.fa-times
+                .card-body
+                    .row
+                        .col-12.col-md-12.col-lg-8.order-2.order-md-1
+                            .row
+                                .col-12.col-sm-4
+                                    .info-box.bg-light
+                                        .info-box-content
+                                            span.info-box-text.text-center.text-muted Estimated budget
+                                            span.info-box-number.text-center.text-muted.mb-0 #{contrib.target}
+                                .col-12.col-sm-4
+                                    .info-box.bg-light
+                                        .info-box-content
+                                            span.info-box-text.text-center.text-muted Amount Raised
+                                            span.info-box-number.text-center.text-muted.mb-0 #{contrib.amount_contributed}
+                                .col-12.col-sm-4
+                                    .info-box.bg-light
+                                        .info-box-content
+                                            span.info-box-text.text-center.text-muted Event Duration
+                                            span.info-box-number.text-center.text-muted.mb-0 20
+                            .row
+                                .col-12
+                                    h4 Recent Contributions 
+                                    .card.shadow.mb-4
+                                        .card-header.py-3
+                                            h6.m-0.font-weight-bold.text-primary 
+                                        .card-body
+                                          .table-responsive
+                                            table.table.table-bordered#dataTable(width="100%", cellspacing="0")
+                                                thead
+                                                    tr
+                                                        th Name
+                                                        th Number
+                                                        th Message
+                                                        th Age
+                                                        th Start date
+                                                        th Amount
+                                                tbody
+                                                  each trans, i in trasnact
+                                                    tr
+                                                        td #{trasnact[i].member.first_name}
+                                                        td #{trasnact[i].contactnumber}
+                                                        td #{trasnact[i].condolenceSMS}
+                                                        td 61
+                                                        td 2011/04/25
+                                                        td #{trasnact[i].donation}
+                        .col-12.col-md-12.col-lg-4.order-1.order-md-2
+                            h3.text-primary
+                                i.fas.fa-paint-brush
+                                |  BunGoma Welfare Group 
+                            p.text-muted Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.
+                            br
+                            .text-muted
+                                p.text-sm
+                                    | Client Company
+                                    b.d-block Deveint Inc
+                                p.text-sm
+                                    | Project Leader
+                                    b.d-block Tony Chicken
+                            h5.mt-5.text-muted Project files
+                            ul.list-unstyled
+                                li: a.btn-link.text-secondary(href)
+                                        i.far.fa-fw.fa-file-word
+                                        |  Functional-requirements.docx
+                                li: a.btn-link.text-secondary(href)
+                                        i.far.fa-fw.fa-file-pdf
+                                        |  UAT.pdf
+                                li: a.btn-link.text-secondary(href)
+                                        i.far.fa-fw.fa-envelope
+                                        |  Email-from-flatbal.mln
+                                li: a.btn-link.text-secondary(href)
+                                        i.far.fa-fw.fa-image
+                                        |  Logo.png
+                                li:a.btn-link.text-secondary(href)
+                                        i.far.fa-fw.fa-file-word
+                                        |  Contract-10_12_2014.docx
+                            .text-center.mt-5.mb-
+                                a.btn.btn-sm.btn-primary(href='/contribute') Contribute
+                                | 
+                                a.btn.btn-sm.btn-primary(href="#") Add files
+                                | 
+                                a.btn.btn-sm.btn-warning(href="#") Report contact

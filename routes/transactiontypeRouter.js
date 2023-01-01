@@ -8,7 +8,7 @@ router
   .get(transactiontypeController.getAlltranstypse)
   .post(transactiontypeController.createtranstype);
 router
-  .route('/:transtype_ID')
+  .route('/:id')
   .get(transactiontypeController.getOnetranstype)
   .patch(transactiontypeController.updatetranstype)
   .delete(transactiontypeController.deletetranstype);

@@ -1,0 +1,5 @@
+{
+    "workbench.sideBar.location": "left",
+    "editor.suggest.showStatusBar": true,
+    "editor.foldingMaximumRegions": 10000
+}

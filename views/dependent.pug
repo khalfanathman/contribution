@@ -1,0 +1,40 @@
+extends base
+
+
+block content
+
+  .row
+    //  left column 
+    .col-md-12
+      //  general form elements 
+      .card.card-primary
+        .card-header
+          h3.card-title Add dependent
+        //  /.card-header 
+        //  form start 
+        form
+          .card-body
+            .form-group
+              label(for="exampleInputEmail1") Dependent First Name
+              input.form-control#Fname(type="text", placeholder="Enter First Name")
+            .form-group
+              label(for="exampleInputEmail1") Dependent Last Name
+              input.form-control#Lname(type="text", placeholder="Enter Last Name")
+            .form-group
+                label Relation 
+                select.form-control.disabled
+                  option Father
+                  option Mother
+                  option Child
+                  option Sibling
+            .form-group
+              label(for="exampleInputFile") Birth Certificate/ ID
+              .input-group
+                .custom-file
+                  input.custom-file-input#exampleInputFile(type="file")
+                  label.custom-file-label(for="exampleInputFile") Choose file
+                .input-group-append
+                  span.input-group-text Upload
+          //  /.card-body 
+          .card-footer
+            button.btn.btn-primary(type="submit") Submit

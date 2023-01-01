@@ -1,31 +1,8 @@
-exports.getAllWgroups = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    Message: ' rote note yet defined',
-  });
-};
-exports.getOneWgroup = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    Message: ' rote note yet defined',
-  });
-};
+const Welfare = require('../models/welfareModel');
+const factory = require('./handlerFactory');
 
-exports.createWgroup = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    Message: ' route note yet defined',
-  });
-};
-exports.updateWgroup = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    Message: ' route note yet defined',
-  });
-};
-exports.deleteWgroup = (req, res) => {
-  res.status(500).json({
-    status: 'error',
-    Message: ' route note yet defined',
-  });
-};
+exports.getAllWgroups = factory.getAll(Welfare);
+exports.getOneWgroup = factory.getOne(Welfare);
+exports.createWgroup = factory.createOne(Welfare);
+exports.updateWgroup = factory.updateOne(Welfare);
+exports.deleteWgroup = factory.deleteOne(Welfare);

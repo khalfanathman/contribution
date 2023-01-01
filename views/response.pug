@@ -1,0 +1,29 @@
+extends base
+
+
+block content
+        .card.card-warning
+            .card-header
+                h3.card-title #{tittle}
+                    //  /.card-header 
+            .card-body
+                form.contribform
+                        .row   
+                             .col-sm-12
+                                //  text input 
+                                .form-group
+                                    label RESPONSE  
+                                    input.form-control#amount(type="text", value=`${ResultDesc}`,disabled)
+                             .col-sm-12
+                                //  text input 
+                                .form-group
+                                    label Failiure
+                                    input.form-control#phone(type="text", value=`${ResultCode}`,disabled)
+                             .col-sm-12
+                                //  textarea 
+                                .form-group
+                                    label Description
+                                    textarea.form-control#sms( rows="4",disabled) #{ResponseDescription}
+                                .form-group.row
+                                    .offset-sm-2.col-sm-10
+                                    button.btn.btn-danger.tryagai(type="submit") Try again

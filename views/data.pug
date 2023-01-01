@@ -1,0 +1,31 @@
+extends base
+
+
+block content 
+            .card
+                .card-header
+                    .card.shadow.mb-4
+                      .card-header.py-3
+                        h6.m-0.font-weight-bold.text-primary DataTables Example
+                      .card-body
+                        .table-responsive
+                        #dataTable_wrapper.dataTables_wrapper.dt-bootsrtap4
+                          table.table.table-bordered#dataTable(width="100%", cellspacing="0")
+                            thead
+                              tr
+                                th Name
+                                th Position
+                                th Office
+                                th Age
+                                th Email
+                                th Salary
+                            tbody
+                             each user in members
+                              tr
+                                td #{user.first_name}
+                                td #{user.role}
+                                td Edinburgh
+                                td 61
+                                td #{user.email}
+                                td $320,800
+                              

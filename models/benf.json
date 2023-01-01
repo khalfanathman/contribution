@@ -1,0 +1,102 @@
+[
+  {
+    "id": "638f4d671b4123fdb8ab9979",
+    "email": "lucile_carey@marketoid.bridgestone",
+    "roles": ["guest", "admin"],
+    "apiKey": "ed7a7b7a-18ad-4cea-a55a-2d6099f3096d",
+    "profile": {
+      "dob": "1989-09-25",
+      "name": "Lucile Carey",
+      "about": "Ex pariatur fugiat irure tempor nisi veniam exercitation sunt reprehenderit aliqua magna ut. Culpa ipsum aute non laboris incididunt pariatur nisi in do.",
+      "address": "48 Cleveland Street, Springhill, Kentucky",
+      "company": "Marketoid",
+      "location": {
+        "lat": -78.013204,
+        "long": -172.807155
+      }
+    },
+    "username": "lucile89",
+    "createdAt": "2010-01-14T00:23:48.613Z",
+    "updatedAt": "2010-01-15T00:23:48.613Z"
+  },
+  {
+    "id": "638f4d6714eee84a61f982c7",
+    "email": "mclean_donaldson@isologics.tirol",
+    "roles": ["guest", "member"],
+    "apiKey": "32c73200-871f-4fea-8b1a-0ee1819e52a6",
+    "profile": {
+      "dob": "1993-11-07",
+      "name": "Mclean Donaldson",
+      "about": "In aliquip enim consequat reprehenderit deserunt dolore. Ad amet consectetur dolore proident.",
+      "address": "47 Seabring Street, Nescatunga, South Dakota",
+      "company": "Isologics",
+      "location": {
+        "lat": 72.524567,
+        "long": -16.545362
+      }
+    },
+    "username": "mclean93",
+    "createdAt": "2014-08-26T07:44:56.393Z",
+    "updatedAt": "2014-08-27T07:44:56.393Z"
+  },
+  {
+    "id": "638f4d6713e5b342972654bb",
+    "email": "hazel_solomon@thredz.guitars",
+    "roles": ["owner", "guest"],
+    "apiKey": "2e165651-7792-43f7-b558-193947970a7b",
+    "profile": {
+      "dob": "1990-09-07",
+      "name": "Hazel Solomon",
+      "about": "Ullamco adipisicing velit in laboris qui enim pariatur aliquip. Magna mollit nulla occaecat quis aliquip mollit deserunt.",
+      "address": "30 Royce Street, Rivera, West Virginia",
+      "company": "Thredz",
+      "location": {
+        "lat": 68.079271,
+        "long": -114.704329
+      }
+    },
+    "username": "hazel90",
+    "createdAt": "2014-08-31T11:18:24.425Z",
+    "updatedAt": "2014-09-01T11:18:24.425Z"
+  },
+  {
+    "id": "638f4d67bfd8ce8a9b3da9c2",
+    "email": "graham_tucker@twiggery.photo",
+    "roles": ["guest"],
+    "apiKey": "8ab8cea6-2f9b-46fd-b5fa-7f9ac5b63eeb",
+    "profile": {
+      "dob": "1994-11-26",
+      "name": "Graham Tucker",
+      "about": "Velit commodo magna elit pariatur occaecat consequat ex nulla. Ad cillum exercitation veniam mollit.",
+      "address": "58 Beacon Court, Interlochen, Maryland",
+      "company": "Twiggery",
+      "location": {
+        "lat": -88.102255,
+        "long": -43.673156
+      }
+    },
+    "username": "graham94",
+    "createdAt": "2012-10-10T08:43:01.828Z",
+    "updatedAt": "2012-10-11T08:43:01.828Z"
+  },
+  {
+    "id": "638f4d6716f7b6d46866bae8",
+    "email": "mayra_watts@frosnex.flsmidth",
+    "roles": ["owner", "guest"],
+    "apiKey": "360ea0d1-8f47-459d-b7cb-2bc6ad5b71ff",
+    "profile": {
+      "dob": "1989-12-04",
+      "name": "Mayra Watts",
+      "about": "Occaecat ullamco incididunt anim laborum exercitation Lorem. Pariatur incididunt ut mollit esse minim.",
+      "address": "96 Falmouth Street, Macdona, South Carolina",
+      "company": "Frosnex",
+      "location": {
+        "lat": 45.171272,
+        "long": -153.212498
+      }
+    },
+    "username": "mayra89",
+    "createdAt": "2010-09-23T21:37:36.693Z",
+    "updatedAt": "2010-09-24T21:37:36.693Z"
+  }
+]

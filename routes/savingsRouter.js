@@ -8,7 +8,7 @@ router
   .get(savingsController.getAllSavings)
   .post(savingsController.createUser);
 router
-  .route('/:savings_ID')
+  .route('/:id')
   .get(savingsController.getSavingns)
   .patch(savingsController.updateSavings)
   .delete(savingsController.deleteSavings);

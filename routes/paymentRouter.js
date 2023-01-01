@@ -8,7 +8,7 @@ router
   .get(paymentController.getAllPayments)
   .post(paymentController.createPayment);
 router
-  .route('/:user_ID')
+  .route('/:id')
   .get(paymentController.getOnePayment)
   .patch(paymentController.updatePayment)
   .delete(paymentController.deletePayment);

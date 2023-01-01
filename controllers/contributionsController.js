@@ -1,196 +1,115 @@
 const Contribution = require('../models/contributionsModel');
-const APIFeatures = require('../utils/apiFeatures');
+const catchAsync = require('../utils/catchAsync');
+const factory = require('./handlerFactory');
+const axios = require('axios');
+const AppError = require('../utils/appError');
 
-// ROUTE HANDLERS
-exports.getAllContributions = async (req, res) => {
-  try {
-    // EXECUTE THE QUREY
-    const features = new APIFeatures(Contribution.find(), req.query)
-      .filter()
-      .sort()
-      .limiFields()
-      .paginate();
-    const contributions = await features.query;
-
-    // SEND RESPONSE
-    res.status(200).json({
-      status: 'success',
-      results: contributions.length,
-      reqAt: req.requestTime,
-      data: {
-        contributions,
+exports.getContribsStats = catchAsync(async (req, res, next) => {
+  const stats = await Contribution.aggregate([
+    {
+      $match: { target: { $gte: 17 } },
+    },
+    {
+      $group: {
+        // _id: '$gender',
+        _id: { $toUpper: '$gender' },
+        numofcontrib: { $sum: 1 },
+        totalcontributions: { $sum: '$amount_contributed' },
+        avrgtarget: { $avg: '$target' },
+        avrgContribution: { $avg: '$amount_contributed' },
       },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: 'fail',
-      message: error,
-    });
-  }
-};
+    },
+    {
+      $sort: {
+        avrgtarget: 1,
+      },
+    },
+    {
+      // $match :{}
+    },
+  ]);
+  res.status(200).json({
+    status: 'success',
+    data: {
+      stats,
+    },
+  });
+});
+exports.getMontlyPlan = catchAsync(async (req, res, next) => {
+  //calculate number of deaths in a year
+  const year = req.params.year * 1;
+  const plan = await Contribution.aggregate([
+    {
+      $unwind: '$end_date',
+    },
+    {
+      $match: {
+        end_date: {
+          $gte: new Date(`${year}-01-01`),
+          $lte: new Date(`${year}-12-31`),
+        },
+      },
+    },
+    {
+      $group: {
+        _id: { $month: '$end_date' },
+        numofcontrib: { $sum: 1 },
+        contributionEvents: { $push: '$tittle' },
+      },
+    },
+    {
+      $addFields: { month: '$_id' },
+    },
+    {
+      $project: {
+        _id: 0,
+      },
+    },
+    {
+      $sort: { numOfContrib: -1 },
+    },
+    // {
+    //   $limit: 1,
+    // },
+  ]);
+  res.status(200).json({
+    status: 'success',
+    data: {
+      plan,
+    },
+  });
+});
 
-exports.getOneContribution = async (req, res) => {
-  try {
-    const contribution = await Contribution.findById(
-      req.params.contribution_ID
+// /events-within/233/center/34.111745,-118.113491/unit/mi
+exports.getContribsWithin = catchAsync(async (req, res, next) => {
+  const { distance, latlng, unit } = req.params;
+  const [lat, lng] = latlng.split(',');
+
+  const radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
+
+  if (!lat || !lng) {
+    next(
+      new AppError(
+        'Please provide latitutr and longitude in the format lat,lng.',
+        400
+      )
     );
-    res.status(200).json({
-      status: 'success',
-      data: {
-        contribution,
-      },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: 'fail',
-      // data: {
-      //   contribution,
-      // },
-    });
   }
-};
-exports.createContribution = async (req, res) => {
-  try {
-    const newContrib = await Contribution.create(req.body);
 
-    res.status(201).json({
-      status: 'success',
-      data: {
-        contributions: newContrib,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: 'invalid data sent',
-    });
-  }
-};
-exports.updateContribution = async (req, res) => {
-  try {
-    const updatedContrib = await Contribution.findByIdAndUpdate(
-      req.params.contribution_ID,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
-    res.status(200).json({
-      status: 'success',
-      data: {
-        contribution: updatedContrib,
-      },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: 'fail',
-      message: error,
-    });
-  }
-};
-
-exports.deleteContribution = async (req, res) => {
-  try {
-    await Contribution.findByIdAndDelete(req.params.contribution_ID);
-    res.status(204).json({
-      status: 'success',
-      data: null,
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: 'fail',
-      message: 'error',
-    });
-  }
-};
-
-exports.getContribsStats = async (req, res) => {
-  try {
-    const stats = await Contribution.aggregate([
-      {
-        $match: { target: { $gte: 17 } },
-      },
-      {
-        $group: {
-          // _id: '$gender',
-          _id: { $toUpper: '$gender' },
-          numofcontrib: { $sum: 1 },
-          totalcontributions: { $sum: '$amount_contributed' },
-          avrgtarget: { $avg: '$target' },
-          avrgContribution: { $avg: '$amount_contributed' },
-        },
-      },
-      {
-        $sort: {
-          avrgtarget: 1,
-        },
-      },
-      {
-        // $match :{}
-      },
-    ]);
-    res.status(200).json({
-      status: 'success',
-      data: {
-        stats,
-      },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: 'fail',
-      message: 'error',
-    });
-  }
-};
-exports.getMontlyPlan = async (req, res) => {
-  try {
-    //calculate number of deaths in a year
-    const year = req.params.year * 1;
-    const plan = await Contribution.aggregate([
-      {
-        $unwind: '$end_date',
-      },
-      {
-        $match: {
-          end_date: {
-            $gte: new Date(`${year}-01-01`),
-            $lte: new Date(`${year}-12-31`),
-          },
-        },
-      },
-      {
-        $group: {
-          _id: { $month: '$end_date' },
-          numofcontrib: { $sum: 1 },
-          contributionEvents: { $push: '$tittle' },
-        },
-      },
-      {
-        $addFields: { month: '$_id' },
-      },
-      {
-        $project: {
-          _id: 0,
-        },
-      },
-      {
-        $sort: { numOfContrib: -1 },
-      },
-      // {
-      //   $limit: 1,
-      // },
-    ]);
-    res.status(200).json({
-      status: 'success',
-      data: {
-        plan,
-      },
-    });
-  } catch (error) {
-    res.status(404).json({
-      status: 'fail',
-      message: error,
-    });
-  }
-};
+  const contribution = await Contribution.find({
+    place_for_burial: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },
+  });
+  console.log(distance, lat, lng, unit);
+  res.status(200).json({
+    status: 'success',
+    results: contribution.length,
+    data: {
+      data: contribution,
+    },
+  });
+});
+exports.getAllContributions = factory.getAll(Contribution);
+exports.getOneContribution = factory.getOne(Contribution);
+exports.createContribution = factory.createOne(Contribution);
+exports.updateContribution = factory.updateOne(Contribution);
+exports.deleteContribution = factory.deleteOne(Contribution);

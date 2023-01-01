@@ -8,7 +8,7 @@ router
   .get(alertController.getAllAlerts)
   .post(alertController.createAlert);
 router
-  .route('/:alert_ID')
+  .route('/:id')
   .get(alertController.getOneAlert)
   .patch(alertController.updateAlert)
   .delete(alertController.deleteAlert);

@@ -1,0 +1,57 @@
+extends base
+
+block content 
+                    .card
+                        .card.shadow.mb-4
+                            .card-header.py-3
+                                h6.m-0.font-weight-bold.text-primary My Dependents 
+                            .card-body
+                                .table-responsive
+                                  #dataTable_wrapper.dataTables_wrapper.dt-bootsrtap4
+                                    table.table.projects.table-bordered.dataTable#dataTable(width="100%", cellspacing="0", role="grid", aria-describedby="dataTable_info", style="width: 100%;")
+                                        thead
+                                            tr
+                                                th No.
+                                                th First Name
+                                                th Last Name 
+                                                th Relation 
+                                                th Age
+                                                th Status
+                                                th Amount
+                                        tbody
+                                         each dependent, i in dependants
+                                            tr
+                                                td #{i+1}
+                                                td #{dependent.first_name}
+                                                td #{dependent.email}
+                                                td #{dependent.ID_n}
+                                                td #{dependent.birthCertNo}
+                                                td 
+                                                td.project-actions.text-right
+                                                    a.btn.btn-primary.btn-sm(href=`/dependant/${dependent.id}`)
+                                                        i.fas.fa-folder.
+                                                        |
+                                                        |  View 
+                                                        |  
+                                                    a.btn.btn-info.btn-sm#logoutM(href="#", data-toggle="modal", data-target="#contributionModal")
+                                                        i.fas.fa-pencil-alt.
+                                                        | 
+                                                        |  Deceased 
+                                    .col-sm-12.col-md-2
+                                                    a.btn.btn-primary.btn-sm(href=`/dependant/`)
+                                                        i.fas.fa-folder.
+                                                        |
+                                                        | Add dependent 
+                                                        |          
+
+                        .modal.fade#contributionModal(tabindex="-1", role="dialog", aria-labelledby="exampleModalLabel", aria-hidden="true")
+                            .modal-dialog(role="document")
+                                .modal-content
+                                    .modal-header
+                                        h5.modal-title#exampleModalLabel Ready to Make Dependant Deceased?
+                                        button.close(type="button", data-dismiss="modal", aria-label="Close")
+                                            span(aria-hidden="true") ×
+                                    .modal-body Select "Confirm" below if you are Sure You want to Select the Dependant As Deceased.
+                                    .modal-footer
+                                        button.btn.btn-secondary(type="button", data-dismiss="modal") Cancel
+                                        a.btn.btn-primary#contribution(href="/login") Confirm

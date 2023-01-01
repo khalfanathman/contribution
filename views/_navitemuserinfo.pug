@@ -1,0 +1,32 @@
+//  Nav Item - User Information 
+li.nav-item.dropdown.no-arrow
+  a.nav-link.dropdown-toggle#userDropdown(href="#", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
+    span.mr-2.d-none.d-lg-inline.text-gray-600.small= member.first_name
+    img.img-profile.rounded-circle(src="../../dist/img/user1-128x128.jpg")
+  //  Dropdown - User Information 
+  .dropdown-menu.dropdown-menu-right.shadow.animated--grow-in(aria-labelledby="userDropdown")
+    a.dropdown-item(href="/me")
+      i.fas.fa-user.fa-sm.fa-fw.mr-2.text-gray-400
+      | Profile
+    a.dropdown-item(href="#")
+      i.fas.fa-cogs.fa-sm.fa-fw.mr-2.text-gray-400
+      | Settings
+    a.dropdown-item(href="#")
+      i.fas.fa-list.fa-sm.fa-fw.mr-2.text-gray-400
+      | Activity Log
+    .dropdown-divider
+    a.dropdown-item(href="#", data-toggle="modal", data-target="#logout")
+      i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
+      | Logout
+
+.modal.fade#logout(tabindex="-1", role="dialog", aria-labelledby="exampleModalLabel", aria-hidden="true")
+  .modal-dialog(role="document")
+    .modal-content
+      .modal-header
+        h5.modal-title#exampleModalLabel Ready to Leave?
+        button.close(type="button", data-dismiss="modal", aria-label="Close")
+          span(aria-hidden="true") ×
+      .modal-body Select "Logout" below if you are ready to end your current session.
+      .modal-footer
+        button.btn.btn-secondary(type="button", data-dismiss="modal") Cancel
+        button.btn.btn-primary#logoutModal Logout
